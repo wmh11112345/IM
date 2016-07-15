@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19AEC80D1D38C3AA002EA56C /* BusinessLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 19AEC80C1D38C3AA002EA56C /* BusinessLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		199A24A51D38D005000D3BFB /* BusinessLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 19AEC80C1D38C3AA002EA56C /* BusinessLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		199A24A81D38D0FA000D3BFB /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 199A24A71D38D0B7000D3BFB /* Note.m */; };
+		199A24A91D38D100000D3BFB /* Note.h in Headers */ = {isa = PBXBuildFile; fileRef = 199A24A61D38D0B7000D3BFB /* Note.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		199A24AF1D38D159000D3BFB /* PersistenceLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199A24AE1D38D159000D3BFB /* PersistenceLayer.framework */; };
 		19AEC8141D38C3AA002EA56C /* BusinessLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19AEC8091D38C3AA002EA56C /* BusinessLayer.framework */; };
 		19AEC8191D38C3AA002EA56C /* BusinessLayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AEC8181D38C3AA002EA56C /* BusinessLayerTests.m */; };
-		19AEC8661D38C3FC002EA56C /* PersistenceLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19AEC8651D38C3FC002EA56C /* PersistenceLayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,13 +26,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		199A24A61D38D0B7000D3BFB /* Note.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		199A24A71D38D0B7000D3BFB /* Note.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		199A24AE1D38D159000D3BFB /* PersistenceLayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PersistenceLayer.framework; path = "../../Library/Developer/Xcode/DerivedData/IM-bjqnqmdqzmcryrekowbbeitevirk/Build/Products/Debug-iphonesimulator/PersistenceLayer.framework"; sourceTree = "<group>"; };
 		19AEC8091D38C3AA002EA56C /* BusinessLayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BusinessLayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		19AEC80C1D38C3AA002EA56C /* BusinessLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessLayer.h; sourceTree = "<group>"; };
 		19AEC80E1D38C3AA002EA56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19AEC8131D38C3AA002EA56C /* BusinessLayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusinessLayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19AEC8181D38C3AA002EA56C /* BusinessLayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessLayerTests.m; sourceTree = "<group>"; };
 		19AEC81A1D38C3AA002EA56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19AEC8651D38C3FC002EA56C /* PersistenceLayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PersistenceLayer.framework; path = "../PersistenceLayer/build/Debug-iphoneos/PersistenceLayer.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19AEC8661D38C3FC002EA56C /* PersistenceLayer.framework in Frameworks */,
+				199A24AF1D38D159000D3BFB /* PersistenceLayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,7 +60,7 @@
 		19AEC7FF1D38C3AA002EA56C = {
 			isa = PBXGroup;
 			children = (
-				19AEC8651D38C3FC002EA56C /* PersistenceLayer.framework */,
+				199A24AE1D38D159000D3BFB /* PersistenceLayer.framework */,
 				19AEC80B1D38C3AA002EA56C /* BusinessLayer */,
 				19AEC8171D38C3AA002EA56C /* BusinessLayerTests */,
 				19AEC80A1D38C3AA002EA56C /* Products */,
@@ -75,6 +79,8 @@
 		19AEC80B1D38C3AA002EA56C /* BusinessLayer */ = {
 			isa = PBXGroup;
 			children = (
+				199A24A61D38D0B7000D3BFB /* Note.h */,
+				199A24A71D38D0B7000D3BFB /* Note.m */,
 				19AEC80C1D38C3AA002EA56C /* BusinessLayer.h */,
 				19AEC80E1D38C3AA002EA56C /* Info.plist */,
 			);
@@ -97,7 +103,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19AEC80D1D38C3AA002EA56C /* BusinessLayer.h in Headers */,
+				199A24A51D38D005000D3BFB /* BusinessLayer.h in Headers */,
+				199A24A91D38D100000D3BFB /* Note.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				199A24A81D38D0FA000D3BFB /* Note.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +390,7 @@
 				19AEC81F1D38C3AA002EA56C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19AEC8201D38C3AA002EA56C /* Build configuration list for PBXNativeTarget "BusinessLayerTests" */ = {
 			isa = XCConfigurationList;
@@ -390,6 +399,7 @@
 				19AEC8221D38C3AA002EA56C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

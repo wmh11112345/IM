@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		199A24AB1D38D138000D3BFB /* BusinessLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199A24AA1D38D138000D3BFB /* BusinessLayer.framework */; };
+		199A24AD1D38D141000D3BFB /* PersistenceLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199A24AC1D38D141000D3BFB /* PersistenceLayer.framework */; };
 		19AEC8311D38C3DB002EA56C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AEC8301D38C3DB002EA56C /* main.m */; };
 		19AEC8341D38C3DB002EA56C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AEC8331D38C3DB002EA56C /* AppDelegate.m */; };
 		19AEC8371D38C3DB002EA56C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AEC8361D38C3DB002EA56C /* ViewController.m */; };
@@ -16,8 +18,6 @@
 		19AEC8421D38C3DB002EA56C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19AEC8401D38C3DB002EA56C /* LaunchScreen.storyboard */; };
 		19AEC84D1D38C3DB002EA56C /* PresentLayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AEC84C1D38C3DB002EA56C /* PresentLayerTests.m */; };
 		19AEC8581D38C3DB002EA56C /* PresentLayerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AEC8571D38C3DB002EA56C /* PresentLayerUITests.m */; };
-		19AEC8691D38C421002EA56C /* BusinessLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19AEC8671D38C421002EA56C /* BusinessLayer.framework */; };
-		19AEC86A1D38C421002EA56C /* PersistenceLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19AEC8681D38C421002EA56C /* PersistenceLayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		199A24AA1D38D138000D3BFB /* BusinessLayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BusinessLayer.framework; path = "../../Library/Developer/Xcode/DerivedData/IM-bjqnqmdqzmcryrekowbbeitevirk/Build/Products/Debug-iphonesimulator/BusinessLayer.framework"; sourceTree = "<group>"; };
+		199A24AC1D38D141000D3BFB /* PersistenceLayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PersistenceLayer.framework; path = "../../Library/Developer/Xcode/DerivedData/IM-bjqnqmdqzmcryrekowbbeitevirk/Build/Products/Debug-iphonesimulator/PersistenceLayer.framework"; sourceTree = "<group>"; };
 		19AEC82C1D38C3DB002EA56C /* PresentLayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PresentLayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19AEC8301D38C3DB002EA56C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		19AEC8321D38C3DB002EA56C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -55,8 +57,6 @@
 		19AEC8531D38C3DB002EA56C /* PresentLayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresentLayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19AEC8571D38C3DB002EA56C /* PresentLayerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresentLayerUITests.m; sourceTree = "<group>"; };
 		19AEC8591D38C3DB002EA56C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19AEC8671D38C421002EA56C /* BusinessLayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BusinessLayer.framework; path = "../BusinessLayer/build/Debug-iphoneos/BusinessLayer.framework"; sourceTree = "<group>"; };
-		19AEC8681D38C421002EA56C /* PersistenceLayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PersistenceLayer.framework; path = "../PersistenceLayer/build/Debug-iphoneos/PersistenceLayer.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19AEC8691D38C421002EA56C /* BusinessLayer.framework in Frameworks */,
-				19AEC86A1D38C421002EA56C /* PersistenceLayer.framework in Frameworks */,
+				199A24AD1D38D141000D3BFB /* PersistenceLayer.framework in Frameworks */,
+				199A24AB1D38D138000D3BFB /* BusinessLayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,8 +89,8 @@
 		19AEC8231D38C3DB002EA56C = {
 			isa = PBXGroup;
 			children = (
-				19AEC8671D38C421002EA56C /* BusinessLayer.framework */,
-				19AEC8681D38C421002EA56C /* PersistenceLayer.framework */,
+				199A24AC1D38D141000D3BFB /* PersistenceLayer.framework */,
+				199A24AA1D38D138000D3BFB /* BusinessLayer.framework */,
 				19AEC82E1D38C3DB002EA56C /* PresentLayer */,
 				19AEC84B1D38C3DB002EA56C /* PresentLayerTests */,
 				19AEC8561D38C3DB002EA56C /* PresentLayerUITests */,
@@ -513,6 +513,7 @@
 				19AEC85E1D38C3DB002EA56C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19AEC85F1D38C3DB002EA56C /* Build configuration list for PBXNativeTarget "PresentLayerTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +522,7 @@
 				19AEC8611D38C3DB002EA56C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		19AEC8621D38C3DB002EA56C /* Build configuration list for PBXNativeTarget "PresentLayerUITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +531,7 @@
 				19AEC8641D38C3DB002EA56C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
