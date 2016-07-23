@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		199A24AB1D38D138000D3BFB /* BusinessLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199A24AA1D38D138000D3BFB /* BusinessLayer.framework */; };
-		199A24AD1D38D141000D3BFB /* PersistenceLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199A24AC1D38D141000D3BFB /* PersistenceLayer.framework */; };
+		192AB18B1D4206A300F81341 /* 主页.png in Resources */ = {isa = PBXBuildFile; fileRef = 192AB1861D4206A300F81341 /* 主页.png */; };
+		192AB18C1D4206A300F81341 /* 定位.png in Resources */ = {isa = PBXBuildFile; fileRef = 192AB1871D4206A300F81341 /* 定位.png */; };
+		192AB18D1D4206A300F81341 /* 我的.png in Resources */ = {isa = PBXBuildFile; fileRef = 192AB1881D4206A300F81341 /* 我的.png */; };
+		192AB18E1D4206A300F81341 /* 收藏.png in Resources */ = {isa = PBXBuildFile; fileRef = 192AB1891D4206A300F81341 /* 收藏.png */; };
+		192AB18F1D4206A300F81341 /* 购物车.png in Resources */ = {isa = PBXBuildFile; fileRef = 192AB18A1D4206A300F81341 /* 购物车.png */; };
+		199A24AB1D38D138000D3BFB /* BusinessLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199A24AA1D38D138000D3BFB /* BusinessLayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		199A24AD1D38D141000D3BFB /* PersistenceLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199A24AC1D38D141000D3BFB /* PersistenceLayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		19AEC8311D38C3DB002EA56C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AEC8301D38C3DB002EA56C /* main.m */; };
 		19AEC8341D38C3DB002EA56C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AEC8331D38C3DB002EA56C /* AppDelegate.m */; };
 		19AEC8371D38C3DB002EA56C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19AEC8361D38C3DB002EA56C /* ViewController.m */; };
@@ -38,6 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		192AB1861D4206A300F81341 /* 主页.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主页.png"; sourceTree = "<group>"; };
+		192AB1871D4206A300F81341 /* 定位.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "定位.png"; sourceTree = "<group>"; };
+		192AB1881D4206A300F81341 /* 我的.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "我的.png"; sourceTree = "<group>"; };
+		192AB1891D4206A300F81341 /* 收藏.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "收藏.png"; sourceTree = "<group>"; };
+		192AB18A1D4206A300F81341 /* 购物车.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "购物车.png"; sourceTree = "<group>"; };
 		199A24AA1D38D138000D3BFB /* BusinessLayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BusinessLayer.framework; path = "../../Library/Developer/Xcode/DerivedData/IM-bjqnqmdqzmcryrekowbbeitevirk/Build/Products/Debug-iphonesimulator/BusinessLayer.framework"; sourceTree = "<group>"; };
 		199A24AC1D38D141000D3BFB /* PersistenceLayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PersistenceLayer.framework; path = "../../Library/Developer/Xcode/DerivedData/IM-bjqnqmdqzmcryrekowbbeitevirk/Build/Products/Debug-iphonesimulator/PersistenceLayer.framework"; sourceTree = "<group>"; };
 		19AEC82C1D38C3DB002EA56C /* PresentLayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PresentLayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,9 +96,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		192AB1851D4206A300F81341 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				192AB1861D4206A300F81341 /* 主页.png */,
+				192AB1871D4206A300F81341 /* 定位.png */,
+				192AB1881D4206A300F81341 /* 我的.png */,
+				192AB1891D4206A300F81341 /* 收藏.png */,
+				192AB18A1D4206A300F81341 /* 购物车.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
 		19AEC8231D38C3DB002EA56C = {
 			isa = PBXGroup;
 			children = (
+				192AB1851D4206A300F81341 /* image */,
 				199A24AC1D38D141000D3BFB /* PersistenceLayer.framework */,
 				199A24AA1D38D138000D3BFB /* BusinessLayer.framework */,
 				19AEC82E1D38C3DB002EA56C /* PresentLayer */,
@@ -257,8 +280,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				192AB18C1D4206A300F81341 /* 定位.png in Resources */,
 				19AEC8421D38C3DB002EA56C /* LaunchScreen.storyboard in Resources */,
+				192AB18E1D4206A300F81341 /* 收藏.png in Resources */,
+				192AB18B1D4206A300F81341 /* 主页.png in Resources */,
 				19AEC83F1D38C3DB002EA56C /* Assets.xcassets in Resources */,
+				192AB18D1D4206A300F81341 /* 我的.png in Resources */,
+				192AB18F1D4206A300F81341 /* 购物车.png in Resources */,
 				19AEC83A1D38C3DB002EA56C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,7 +407,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -418,7 +446,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -430,7 +458,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = PresentLayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.buystreet.PresentLayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -441,7 +471,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = PresentLayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.buystreet.PresentLayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
