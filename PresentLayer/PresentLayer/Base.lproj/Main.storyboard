@@ -62,7 +62,70 @@
                     <view key="view" contentMode="scaleToFill" id="uOt-Wf-uHT">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收藏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ih-eu-1F1">
+                                <rect key="frame" x="279" y="289" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="8kA-hJ-dRM"/>
+                                    <constraint firstAttribute="width" constant="42" id="Ia1-Gu-RnY"/>
+                                    <constraint firstAttribute="width" constant="42" id="oML-IA-ogY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="8kA-hJ-dRM"/>
+                                        <exclude reference="Ia1-Gu-RnY"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="8kA-hJ-dRM"/>
+                                        <exclude reference="oML-IA-ogY"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Ia1-Gu-RnY"/>
+                                        <exclude reference="oML-IA-ogY"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Ih-eu-1F1" firstAttribute="centerX" secondItem="uOt-Wf-uHT" secondAttribute="centerX" id="2gy-c0-Uvj"/>
+                            <constraint firstItem="4Ih-eu-1F1" firstAttribute="centerY" secondItem="uOt-Wf-uHT" secondAttribute="centerY" id="FXd-7B-Mfo"/>
+                            <constraint firstItem="4Ih-eu-1F1" firstAttribute="centerX" secondItem="uOt-Wf-uHT" secondAttribute="centerX" id="HTh-QR-Wek"/>
+                            <constraint firstItem="4Ih-eu-1F1" firstAttribute="centerY" secondItem="uOt-Wf-uHT" secondAttribute="centerY" id="OW7-1B-I5P"/>
+                            <constraint firstItem="4Ih-eu-1F1" firstAttribute="centerX" secondItem="uOt-Wf-uHT" secondAttribute="centerX" id="Og6-SK-nfT"/>
+                            <constraint firstItem="4Ih-eu-1F1" firstAttribute="centerY" secondItem="uOt-Wf-uHT" secondAttribute="centerY" id="gaI-Fw-TVz"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2gy-c0-Uvj"/>
+                                <exclude reference="FXd-7B-Mfo"/>
+                                <exclude reference="HTh-QR-Wek"/>
+                                <exclude reference="OW7-1B-I5P"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="FXd-7B-Mfo"/>
+                                <include reference="HTh-QR-Wek"/>
+                                <exclude reference="Og6-SK-nfT"/>
+                                <exclude reference="gaI-Fw-TVz"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="2gy-c0-Uvj"/>
+                                <include reference="OW7-1B-I5P"/>
+                                <exclude reference="Og6-SK-nfT"/>
+                                <exclude reference="gaI-Fw-TVz"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="收藏" image="收藏.png" id="GBV-iH-OKH"/>
                 </viewController>
@@ -102,7 +165,47 @@
                     <view key="view" contentMode="scaleToFill" id="mqk-zd-K8n">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="定位" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKV-aX-kJc">
+                                <rect key="frame" x="283" y="289" width="34" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GKV-aX-kJc" firstAttribute="centerX" secondItem="mqk-zd-K8n" secondAttribute="centerX" id="GEM-Ce-RUg"/>
+                            <constraint firstItem="GKV-aX-kJc" firstAttribute="centerY" secondItem="mqk-zd-K8n" secondAttribute="centerY" id="Sc3-JR-dMZ"/>
+                            <constraint firstItem="GKV-aX-kJc" firstAttribute="centerX" secondItem="mqk-zd-K8n" secondAttribute="centerX" id="aXd-NZ-bvd"/>
+                            <constraint firstItem="GKV-aX-kJc" firstAttribute="centerY" secondItem="mqk-zd-K8n" secondAttribute="centerY" id="jw1-Fy-ejl"/>
+                            <constraint firstItem="GKV-aX-kJc" firstAttribute="centerX" secondItem="mqk-zd-K8n" secondAttribute="centerX" id="nFZ-f1-fc0"/>
+                            <constraint firstItem="GKV-aX-kJc" firstAttribute="centerY" secondItem="mqk-zd-K8n" secondAttribute="centerY" id="zF6-kg-ZSP"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Sc3-JR-dMZ"/>
+                                <exclude reference="aXd-NZ-bvd"/>
+                                <exclude reference="nFZ-f1-fc0"/>
+                                <exclude reference="zF6-kg-ZSP"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="GEM-Ce-RUg"/>
+                                <exclude reference="jw1-Fy-ejl"/>
+                                <include reference="nFZ-f1-fc0"/>
+                                <include reference="zF6-kg-ZSP"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="GEM-Ce-RUg"/>
+                                <include reference="Sc3-JR-dMZ"/>
+                                <include reference="aXd-NZ-bvd"/>
+                                <exclude reference="jw1-Fy-ejl"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="定位" image="定位.png" id="InU-ac-JUh"/>
                 </viewController>
@@ -121,7 +224,50 @@
                     <view key="view" contentMode="scaleToFill" id="lld-b2-JPw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopping" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s10-oS-edA">
+                                <rect key="frame" x="263" y="289" width="74" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="179" y="350" width="42" height="21"/>
+                                </variation>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="s10-oS-edA" firstAttribute="centerX" secondItem="lld-b2-JPw" secondAttribute="centerX" id="0rG-ft-NP6"/>
+                            <constraint firstItem="s10-oS-edA" firstAttribute="centerX" secondItem="lld-b2-JPw" secondAttribute="centerX" id="HFZ-gO-o02"/>
+                            <constraint firstItem="s10-oS-edA" firstAttribute="centerX" secondItem="lld-b2-JPw" secondAttribute="centerX" id="Hz0-vy-y8G"/>
+                            <constraint firstItem="s10-oS-edA" firstAttribute="centerY" secondItem="lld-b2-JPw" secondAttribute="centerY" id="Prz-c4-VlP"/>
+                            <constraint firstItem="s10-oS-edA" firstAttribute="centerY" secondItem="lld-b2-JPw" secondAttribute="centerY" id="Res-Dy-j2R"/>
+                            <constraint firstItem="s10-oS-edA" firstAttribute="centerY" secondItem="lld-b2-JPw" secondAttribute="centerY" id="gQu-RO-Laa"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="0rG-ft-NP6"/>
+                                <exclude reference="Hz0-vy-y8G"/>
+                                <exclude reference="Res-Dy-j2R"/>
+                                <exclude reference="gQu-RO-Laa"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="0rG-ft-NP6"/>
+                                <exclude reference="HFZ-gO-o02"/>
+                                <exclude reference="Prz-c4-VlP"/>
+                                <include reference="gQu-RO-Laa"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="HFZ-gO-o02"/>
+                                <include reference="Hz0-vy-y8G"/>
+                                <exclude reference="Prz-c4-VlP"/>
+                                <include reference="Res-Dy-j2R"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="购物车" image="购物车.png" id="HYZ-bV-aAd"/>
                 </viewController>
@@ -136,7 +282,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="yEV-ij-JcD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="输入您的账户手机号或邮箱账号" id="C1F-QW-cWK">
                                 <cells>
@@ -219,7 +365,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="创建新用户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lY-Ct-Na1">
                                                     <rect key="frame" x="8" y="14" width="551" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
