@@ -2,12 +2,12 @@
 //  XMPPConfig.h
 //  XMPPSample
 //
-//  Created by lewis on 14-3-27.
-//  Copyright (c) 2014年 com.lanou3g. All rights reserved.
+//  Created by lewis on 16-8-7.
+//  Copyright (c) 2016年 王猛虎. All rights reserved.
 //
 
-#ifndef XMPPSample_XMPPConfig_h
-#define XMPPSample_XMPPConfig_h
+#ifndef XMPPConfig_h
+#define XMPPConfig_h
 
 //openfire服务器IP地址
 #define  kHostName      @"127.0.0.1"
