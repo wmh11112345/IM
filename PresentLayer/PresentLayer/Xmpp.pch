@@ -2,12 +2,12 @@
 //  Xmpp.pch
 //  LO_XMPP01
 //
-//  Created by 张正 on 15/9/19.
-//  Copyright (c) 2015年 张正. All rights reserved.
+//  Created by 王猛虎 on 16/8/17.
+//  Copyright (c) 2016年 王猛虎. All rights reserved.
 //
 
-#ifndef LO_XMPP01_Xmpp_pch
-#define LO_XMPP01_Xmpp_pch
+#ifndef Xmpp_pch
+#define Xmpp_pch
 
 #import <UIKit/UIKit.h>
 
