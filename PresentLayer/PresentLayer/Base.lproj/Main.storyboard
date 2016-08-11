@@ -674,9 +674,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="Ha9-0h-HxJ" kind="show" identifier="ChartView" id="ExY-T7-8e4"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -689,58 +686,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="At7-u6-zat" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2190" y="-755"/>
-        </scene>
-        <!--CharView-->
-        <scene sceneID="aj6-2b-gLU">
-            <objects>
-                <collectionViewController title="CharView" id="Ha9-0h-HxJ" customClass="ChartViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="vGs-hR-fPr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rFn-vb-RvC">
-                            <size key="itemSize" width="598" height="66"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="JZb-3a-eS0" customClass="ChartCell">
-                                <rect key="frame" x="1" y="64" width="598" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="598" height="66"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vbm-w7-Abl">
-                                            <rect key="frame" x="545" y="13" width="40" height="40"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mc8-Cm-sXR">
-                                            <rect key="frame" x="490" y="22" width="42" height="21"/>
-                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <size key="customSize" width="598" height="66"/>
-                                <connections>
-                                    <outlet property="messege" destination="mc8-Cm-sXR" id="oEc-ST-d0a"/>
-                                    <outlet property="userPhoto" destination="Vbm-w7-Abl" id="psB-yx-y9a"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="Ha9-0h-HxJ" id="wOT-G4-7wH"/>
-                            <outlet property="delegate" destination="Ha9-0h-HxJ" id="qio-cO-Udc"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="title" id="jkW-8J-JrZ"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="onF-OJ-REe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2931" y="-755"/>
         </scene>
         <!--FriendListNavigation-->
         <scene sceneID="gLS-qt-T6w">

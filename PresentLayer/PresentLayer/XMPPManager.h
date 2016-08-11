@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "XMPPFramework.h"
+@class NSManagedObjectContext;
+@class XMPPvCardAvatarModule;
+@class XMPPJID;
+@class XMPPStream;
 
 @interface XMPPManager : NSObject<XMPPStreamDelegate,XMPPRosterDelegate>
 
@@ -26,5 +30,7 @@
 - (void)addFriend:(NSString *)userName;
 - (void)removeFriend:(NSString *)userName;
 -(NSManagedObjectContext *)rosterContext;
--(XMPPvCardAvatarModule *)vatarModule;
+-(XMPPvCardAvatarModule *)vatarModule; 
+- (NSManagedObjectContext *)messageContext;
+-(void)sendMessage:(NSString *)msgBody toUser:(XMPPJID *)jid;
 @end
