@@ -36,15 +36,24 @@
     [[XMPPManager sharedManager] loginWithUserName:self.userNameTextField.text password:self.passwordTextField.text];
     
 }
+- (IBAction)logoutButtonAction:(UIButton *)sender {
+      [[XMPPManager sharedManager] logoutWithUserName:self.userNameTextField.text];
+}
 
 /**
  * 验证成功
  */
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
-    NSLog(@"%s__%d__| 登陆成功", __FUNCTION__, __LINE__);
-    XMPPPresence *presence = [XMPPPresence presenceWithType:@"available"];
-    [[XMPPManager sharedManager].xmppStream sendElement:presence];
+      NSLog(@"%s__%d__| 登陆成功", __FUNCTION__, __LINE__);
+      XMPPPresence *presence = [XMPPPresence presenceWithType:@"available"];
+      [[XMPPManager sharedManager].xmppStream sendElement:presence];
+      UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  
+
+      UIViewController *registerViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"FriendListNavigation"];
+      [self presentViewController:registerViewController animated:YES completion:^{NSLog(@"go to add friendsList");}];
+      
 }
 
 /**

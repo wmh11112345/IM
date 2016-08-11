@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "XMPPFramework.h"
 
-@interface XMPPManager : NSObject<XMPPStreamDelegate>
+@interface XMPPManager : NSObject<XMPPStreamDelegate,XMPPRosterDelegate>
 
 // 通信通道对象
 @property (nonatomic, strong) XMPPStream *xmppStream;
-
+//好友花名册管理
+@property (nonatomic,strong)  XMPPRoster *xmppRoster;
 + (XMPPManager *)sharedManager;
 
 - (void)loginWithUserName:(NSString *)userName
@@ -21,5 +22,9 @@
 
 - (void)registerWithUserName:(NSString *)userName
                     password:(NSString *)password;
-
+- (void)logoutWithUserName:(NSString *)userName;
+- (void)addFriend:(NSString *)userName;
+- (void)removeFriend:(NSString *)userName;
+-(NSManagedObjectContext *)rosterContext;
+-(XMPPvCardAvatarModule *)vatarModule;
 @end
