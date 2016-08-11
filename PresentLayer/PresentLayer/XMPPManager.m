@@ -15,7 +15,10 @@ typedef NS_ENUM(NSInteger, ConnectToServerPurpose)
     ConnectToServerPurposeRegister
 };
 
-@interface XMPPManager ()
+@interface XMPPManager (){
+      XMPPvCardTempModule *_vmodule;
+       XMPPvCardAvatarModule *_xmppAvate;
+}
 
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, assign) ConnectToServerPurpose connectToServerPurpose;
@@ -51,9 +54,29 @@ typedef NS_ENUM(NSInteger, ConnectToServerPurpose)
         self.xmppStream.hostPort = kHostPort;
         // 添加代理
         [self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
-        
+          [self configure];
     }
     return self;
+}
+/*
+ *激活xmppRoster
+ **/
+-(void)configure{
+      XMPPRosterCoreDataStorage *storage=[XMPPRosterCoreDataStorage sharedInstance];
+      _xmppRoster=[[XMPPRoster alloc] initWithRosterStorage:storage];
+      //    _xmppRoster.autoAcceptKnownPresenceSubscriptionRequests=NO;
+      [_xmppRoster addDelegate:self delegateQueue:dispatch_get_main_queue()];
+      
+      [_xmppRoster activate:_xmppStream];
+      
+      
+      XMPPvCardCoreDataStorage *vStorage=[XMPPvCardCoreDataStorage sharedInstance];
+      _vmodule=[[XMPPvCardTempModule alloc] initWithvCardStorage:vStorage];
+      [_vmodule activate:_xmppStream];
+      
+      
+      _xmppAvate=[[XMPPvCardAvatarModule alloc]initWithvCardTempModule:_vmodule];
+      [_xmppAvate activate:_xmppStream];
 }
 
 
@@ -83,7 +106,7 @@ typedef NS_ENUM(NSInteger, ConnectToServerPurpose)
  */
 - (void)connectToServerWithUserName:(NSString *)userName
 {
-    // 创建XMPPJID对象
+    // 创建XMPPJID对象,JID－格式必须为 "用户名"+"@"+"服务器地址",示例 :user@127.0.0.1
     XMPPJID *jid = [XMPPJID jidWithUser:userName domain:kDomin resource:kResource];
     // 设置通信通道对象的JID
     self.xmppStream.myJID = jid;
@@ -135,9 +158,59 @@ typedef NS_ENUM(NSInteger, ConnectToServerPurpose)
     
     
 }
+/**
+ *注销登录
+ */
+- (void)logoutWithUserName:(NSString *)userName{
+      // 创建XMPPJID对象,JID－格式必须为 "用户名"+"@"+"服务器地址",示例 :user@127.0.0.1
+      XMPPJID *jid = [XMPPJID jidWithUser:userName domain:kDomin resource:kResource];
+      // 设置通信通道对象的JID
+      self.xmppStream.myJID = jid;
+      if ([self.xmppStream isConnected] || [self.xmppStream isConnecting]) {
+      // 先发送下线状态
+            XMPPPresence *presence = [XMPPPresence presenceWithType:@"unavailable"];
+            [self.xmppStream sendElement:presence];
 
+      // 断开连接
+            [self.xmppStream disconnect];
+            NSLog(@"%s__%d__| 登出成功", __FUNCTION__, __LINE__);
+      }
+      else{
+            NSLog(@"%s__%d__| 请先登录", __FUNCTION__, __LINE__);
+      }
+      
+}
+/*
+ *增加好友
+ */
+-(void)addFriend:(NSString *)userName{
+      XMPPJID *jid = [XMPPJID jidWithUser:userName domain:kDomin resource:kResource];
+      [_xmppRoster subscribePresenceToUser:jid];
+}
 
-
+/*
+ *删除好友
+ */
+-(void)removeFriend:(NSString *)userName{
+      XMPPJID *jid = [XMPPJID jidWithUser:userName domain:kDomin resource:kResource];
+      [_xmppRoster removeUser:jid];
+}
+/*
+ *花名册上下文
+ */
+-(NSManagedObjectContext *)rosterContext{
+      
+      XMPPRosterCoreDataStorage *storage=_xmppRoster.xmppRosterStorage;
+      return [storage mainThreadManagedObjectContext];
+}
+/*
+ *用户头像
+ */
+-(XMPPvCardAvatarModule *)vatarModule{
+      
+      return _xmppAvate;
+      
+}
 
 
 
