@@ -8,7 +8,7 @@
 
 #import "FriendListViewController.h"
 #import "XMPPManager.h"
-#import "ChartViewController.h"
+#import "JSQChatViewController.h"
 @interface FriendListViewController ()<NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSString *userStat; //好友状态
 
@@ -143,12 +143,24 @@
 
 
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+      [tableView deselectRowAtIndexPath:indexPath animated:YES];
+      
+      XMPPUserCoreDataStorageObject *user=[fetchedResultsController objectAtIndexPath:indexPath];
+      
+      
+      JSQChatViewController *jsc=[[JSQChatViewController alloc] init];
+      jsc.hidesBottomBarWhenPushed=YES;
+      jsc.currentUser=user;
+      [self.navigationController pushViewController:jsc animated:YES];
+      
+      
+}
 
 #pragma mark - Navigation
 /*
  *跳转到聊天界面
- */
+ 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
    
@@ -161,5 +173,5 @@
       }
 }
 
-
+*/
 @end

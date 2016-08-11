@@ -7,6 +7,7 @@
 //
 
 #import "XMPPManager.h"
+#import "HeadFile.h"
 
 // 枚举
 typedef NS_ENUM(NSInteger, ConnectToServerPurpose)
@@ -211,7 +212,85 @@ typedef NS_ENUM(NSInteger, ConnectToServerPurpose)
       return _xmppAvate;
       
 }
+/*
+ *激活消息模块
+ */
+- (NSManagedObjectContext *)messageContext
+{
+      XMPPMessageArchivingCoreDataStorage *storage = [XMPPMessageArchivingCoreDataStorage sharedInstance];
+      return [storage mainThreadManagedObjectContext];
+}
+/*
+ *发送消息
+ **/
+-(void)sendMessage:(NSString *)msgBody toUser:(XMPPJID *)jid{
+      NSString *siID = [XMPPStream generateUUID];
+      XMPPMessage *msg = [XMPPMessage messageWithType:@"chat" to:jid elementID:siID];
+      NSXMLElement *receipt = [NSXMLElement elementWithName:@"request" xmlns:@"urn:xmpp:receipts"];
+      [msg addChild:receipt];
+      [msg addBody:msgBody];
+      [_xmppStream sendElement:msg];
+}
 
+/*
+ *当接收到 message 标签的内容时，XMPPFramework 框架回调该方法
+ */
+-(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message{
+      NSXMLElement *request = [message elementForName:@"request"];//回执判断
+      if (request){
+            if ([request.xmlns isEqualToString:@"urn:xmpp:receipts"]){//消息回执
+                  //组装消息回执
+                  XMPPMessage *msg = [XMPPMessage messageWithType:[message attributeStringValueForName:@"type"] to:message.from elementID:[message attributeStringValueForName:@"id"]];
+                  NSXMLElement *recieved = [NSXMLElement elementWithName:@"received" xmlns:@"urn:xmpp:receipts"];
+                  [msg addChild:recieved];
+                  
+                  //发送回执
+                  [self.xmppStream sendElement:msg];
+            }
+      }
+      else{
+            NSXMLElement *received = [message elementForName:@"received"];
+            if (received){
+                  if ([received.xmlns isEqualToString:@"urn:xmpp:receipts"]){//消息回执
+                        //发送成功
+                        NSLog(@"message send success!");
+                  }
+            }
+      }
+      NSString *body = [[message elementForName:@"body"] stringValue];
+      NSString *displayName = [[message from]bare];
+      if (body!=nil) {
+            NSDictionary *info=@{@"userId":message.from.user,@"display":displayName,@"msg":body};
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_RECIVED_MSG_5 object:nil userInfo:info];
+      }
+}
 
+/*
+ *当接收到 presence 标签的内容时，XMPPFramework 框架回调该方法
+ available 上线
+ away 离开
+ do not disturb 忙碌
+ unavailable 下线
+ **/
+-(void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence{
+      
+      //    NSLog(@"=================%@=",presence);
+      NSString *type=[presence type];
+      
+      //对方已删除好友
+      if ([type isEqualToString:@"unsubscribe"]) {
+            [_xmppRoster removeUser:presence.from];
+      }
+     }
 
+/*
+ *收到SubscriptionRequest时，XMPPFramework会回调
+ */
+- (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
+{
+    
+      //接收添加好友请求
+      [_xmppRoster acceptPresenceSubscriptionRequestFrom:presence.from andAddToRoster:YES];
+      
+}
 @end
