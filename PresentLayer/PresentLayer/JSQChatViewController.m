@@ -32,7 +32,7 @@
       messagesList=[[NSMutableArray alloc] init];
 
       self.title=self.currentUser.jid.user;
-
+      self.collectionView.collectionViewLayout.springinessEnabled = NO;
 
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reciviedMsg:) name:NOTICE_RECIVED_MSG_5 object:nil];
 
@@ -46,7 +46,7 @@
       inBubbleImage=[bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleBlueColor]];
       outBubbleImage=[bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleGreenColor]];
 
-
+      //通信对象的头像
       NSData *photoData = [[[XMPPManager sharedManager]vatarModule] photoDataForJID:self.currentUser.jid];
       if (photoData != nil){
          inAvatarImage = [JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageWithData:photoData] diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
@@ -55,8 +55,8 @@
       else{
           inAvatarImage=[JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"AppIcon@2x.png"] diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
       }
-
-
+      
+      //自己的头像
       XMPPJID *jid=[XMPPJID jidWithString:[[NSUserDefaults standardUserDefaults] objectForKey:@"user_name"]];
       photoData = [[[XMPPManager sharedManager] vatarModule] photoDataForJID:jid];
 

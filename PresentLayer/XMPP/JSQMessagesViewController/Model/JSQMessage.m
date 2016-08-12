@@ -54,6 +54,7 @@
     self = [self initWithSenderId:senderId senderDisplayName:senderDisplayName date:date isMedia:NO];
     if (self) {
         _text = [text copy];
+        
     }
     return self;
 }
