@@ -61,6 +61,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 @property (strong, nonatomic) NSIndexPath *selectedIndexPathForMenu;
 
+//保存上一次接收到信息的时间
+@property (strong,nonatomic) NSDate *lastDate;
+
 - (void)jsq_configureMessagesViewController;
 
 - (NSString *)jsq_currentlyComposedMessageText;
@@ -216,12 +219,13 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+      [super viewDidLoad];
 
-    [[[self class] nib] instantiateWithOwner:self options:nil];
+      [[[self class] nib] instantiateWithOwner:self options:nil];
 
-    [self jsq_configureMessagesViewController];
-    [self jsq_registerForNotifications:YES];
+      [self jsq_configureMessagesViewController];
+      [self jsq_registerForNotifications:YES];
+      self.lastDate = [NSDate dateWithTimeIntervalSince1970:1];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -429,7 +433,15 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+      id<JSQMessageData> message = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
+//      NSDate *lastDate =[[NSDate alloc] initWithTimeIntervalSince1970:0];
+      NSDate *currentDate = [message date];
+      if ([currentDate timeIntervalSinceDate:self.lastDate] > 60) {
+            self.lastDate = [currentDate copy];
+             return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:[message date]];
+      }
+      self.lastDate = [currentDate copy];
+     return nil;
 }
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath
@@ -522,8 +534,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
             }
         }
     }
-
-    cell.cellTopLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForCellTopLabelAtIndexPath:indexPath];
+     
+      cell.cellTopLabel.attributedText =[collectionView.dataSource collectionView:collectionView attributedTextForCellTopLabelAtIndexPath:indexPath];
     cell.messageBubbleTopLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:indexPath];
     cell.cellBottomLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForCellBottomLabelAtIndexPath:indexPath];
 
@@ -635,12 +647,14 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
                    layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 0.0f;
+      return kJSQMessagesCollectionViewCellLabelHeightDefault;
+//      return 0.0f;
 }
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
                    layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath
 {
+      
     return 0.0f;
 }
 

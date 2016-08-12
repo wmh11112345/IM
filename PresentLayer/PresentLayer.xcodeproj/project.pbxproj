@@ -61,6 +61,7 @@
 		1950060C1D5C571A00D3EC56 /* JSQMessagesTypingIndicatorFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 195005DF1D5C571A00D3EC56 /* JSQMessagesTypingIndicatorFooterView.m */; };
 		1950060D1D5C571A00D3EC56 /* JSQMessagesTypingIndicatorFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 195005E01D5C571A00D3EC56 /* JSQMessagesTypingIndicatorFooterView.xib */; };
 		195006101D5C5C3400D3EC56 /* JSQChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1950060F1D5C5C3400D3EC56 /* JSQChatViewController.m */; };
+		1950061D1D5C9E4E00D3EC56 /* IM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1950061B1D5C9E4E00D3EC56 /* IM.xcdatamodeld */; };
 		199A24AB1D38D138000D3BFB /* BusinessLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199A24AA1D38D138000D3BFB /* BusinessLayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		199A24AD1D38D141000D3BFB /* PersistenceLayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199A24AC1D38D141000D3BFB /* PersistenceLayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		199D55841D55AA1F00FEAC66 /* XMPPAnonymousAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 199D54481D55AA1E00FEAC66 /* XMPPAnonymousAuthentication.m */; };
@@ -324,6 +325,7 @@
 		1950060E1D5C5C3400D3EC56 /* JSQChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQChatViewController.h; sourceTree = "<group>"; };
 		1950060F1D5C5C3400D3EC56 /* JSQChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQChatViewController.m; sourceTree = "<group>"; };
 		195006111D5C624E00D3EC56 /* HeadFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadFile.h; sourceTree = "<group>"; };
+		1950061C1D5C9E4E00D3EC56 /* IM.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IM.xcdatamodel; sourceTree = "<group>"; };
 		199A24AA1D38D138000D3BFB /* BusinessLayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BusinessLayer.framework; path = "../../Library/Developer/Xcode/DerivedData/IM-bjqnqmdqzmcryrekowbbeitevirk/Build/Products/Debug-iphonesimulator/BusinessLayer.framework"; sourceTree = "<group>"; };
 		199A24AC1D38D141000D3BFB /* PersistenceLayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PersistenceLayer.framework; path = "../../Library/Developer/Xcode/DerivedData/IM-bjqnqmdqzmcryrekowbbeitevirk/Build/Products/Debug-iphonesimulator/PersistenceLayer.framework"; sourceTree = "<group>"; };
 		199D54471D55AA1E00FEAC66 /* XMPPAnonymousAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPAnonymousAuthentication.h; sourceTree = "<group>"; };
@@ -1605,6 +1607,7 @@
 				19AEC8401D38C3DB002EA56C /* LaunchScreen.storyboard */,
 				19AEC8431D38C3DB002EA56C /* Info.plist */,
 				19AEC82F1D38C3DB002EA56C /* Supporting Files */,
+				1950061B1D5C9E4E00D3EC56 /* IM.xcdatamodeld */,
 			);
 			path = PresentLayer;
 			sourceTree = "<group>";
@@ -1861,6 +1864,7 @@
 				199D55DE1D55AA1F00FEAC66 /* XMPPMessage+XEP_0184.m in Sources */,
 				199D55C11D55AA1F00FEAC66 /* XMPPvCardTempEmail.m in Sources */,
 				195005FF1D5C571A00D3EC56 /* JSQMessagesCollectionViewCell.m in Sources */,
+				1950061D1D5C9E4E00D3EC56 /* IM.xcdatamodeld in Sources */,
 				199D55871D55AA1F00FEAC66 /* XMPPDigestMD5Authentication.m in Sources */,
 				195005E31D5C571A00D3EC56 /* NSBundle+JSQMessages.m in Sources */,
 				199D55A71D55AA1F00FEAC66 /* XMPPIQ+LastActivity.m in Sources */,
@@ -2217,6 +2221,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		1950061B1D5C9E4E00D3EC56 /* IM.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1950061C1D5C9E4E00D3EC56 /* IM.xcdatamodel */,
+			);
+			currentVersion = 1950061C1D5C9E4E00D3EC56 /* IM.xcdatamodel */;
+			path = IM.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		199D54B11D55AA1E00FEAC66 /* XMPPRoom.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
