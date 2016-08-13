@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PresentLayer/XMPP/JSQMessagesViewController/Controllers/JSQMessagesViewController.m"
-            timestampString = "492707291.503092"
+            timestampString = "492742996.008171"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "539"
-            endingLineNumber = "539"
+            startingLineNumber = "544"
+            endingLineNumber = "544"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -132,12 +132,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PresentLayer/XMPP/JSQMessagesViewController/Controllers/JSQMessagesViewController.m"
-            timestampString = "492707291.503092"
+            timestampString = "492742996.008171"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "657"
-            endingLineNumber = "657"
-            landmarkName = "-collectionView:layout:heightForMessageBubbleTopLabelAtIndexPath:"
+            startingLineNumber = "442"
+            endingLineNumber = "442"
+            landmarkName = "-collectionView:attributedTextForCellTopLabelAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PresentLayer/XMPP/JSQMessagesViewController/Controllers/JSQMessagesViewController.m"
+            timestampString = "492742996.008171"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "476"
+            endingLineNumber = "476"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PresentLayer/XMPP/JSQMessagesViewController/Controllers/JSQMessagesViewController.m"
+            timestampString = "492742996.008171"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "655"
+            endingLineNumber = "655"
+            landmarkName = "-collectionView:layout:heightForCellTopLabelAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PresentLayer/XMPP/JSQMessagesViewController/Controllers/JSQMessagesViewController.m"
+            timestampString = "492742996.008171"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "543"
+            endingLineNumber = "543"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
