@@ -1090,7 +1090,8 @@ enum XMPPStreamConfig
 	if (dispatch_get_specific(xmppQueueTag))
 		block();
 	else
-		dispatch_sync(xmppQueue, block);
+            dispatch_sync(xmppQueue, block);
+//		dispatch_sync(xmppQueue, block);
 	
 	if (errPtr)
 		*errPtr = err;
@@ -1880,18 +1881,18 @@ enum XMPPStreamConfig
 		// P.S. - This method is deprecated.
 		
 		id <XMPPSASLAuthentication> someAuth = nil;
-		
-		if ([self supportsDigestMD5Authentication])
+             if ([self supportsPlainAuthentication])
+            {
+                  someAuth = [[XMPPPlainAuthentication alloc] initWithStream:self password:password];
+                  result = [self authenticate:someAuth error:&err];
+            }
+
+		else if ([self supportsDigestMD5Authentication])
 		{
 			someAuth = [[XMPPDigestMD5Authentication alloc] initWithStream:self password:password];
 			result = [self authenticate:someAuth error:&err];
 		}
-		else if ([self supportsPlainAuthentication])
-		{
-			someAuth = [[XMPPPlainAuthentication alloc] initWithStream:self password:password];
-			result = [self authenticate:someAuth error:&err];
-		}
-		else if ([self supportsDeprecatedDigestAuthentication])
+				else if ([self supportsDeprecatedDigestAuthentication])
 		{
 			someAuth = [[XMPPDeprecatedDigestAuthentication alloc] initWithStream:self password:password];
 			result = [self authenticate:someAuth error:&err];

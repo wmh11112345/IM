@@ -172,6 +172,6 @@
             chartViewController.title =  user.jid.user;
       }
 }
-
 */
+
 @end

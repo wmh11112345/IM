@@ -16,7 +16,7 @@
 
 #import "JSQChatViewController.h"
 #import "XMPPManager.h"
-
+#import "EnlargeImage.h"
 
 
 @interface JSQChatViewController ()
@@ -35,7 +35,8 @@
       self.collectionView.collectionViewLayout.springinessEnabled = NO;
 
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reciviedMsg:) name:NOTICE_RECIVED_MSG_5 object:nil];
-
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkStat:) name:NOTICE_NETWORK_DISCONNECT object:nil];
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didAuthenticate:) name:NOTICE_DID_AUTHENTICATE object:nil];
 
       self.senderDisplayName=self.currentUser.displayName;
       self.senderId=self.currentUser.jid.user;
@@ -45,6 +46,9 @@
 
       inBubbleImage=[bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleBlueColor]];
       outBubbleImage=[bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleGreenColor]];
+      
+      //增加“删除”
+       [JSQMessagesCollectionViewCell registerMenuAction:@selector(delete:)];
 
       //通信对象的头像
       NSData *photoData = [[[XMPPManager sharedManager]vatarModule] photoDataForJID:self.currentUser.jid];
@@ -142,11 +146,28 @@
     
     return _fetchedResultController;
 }
-
+/** 发送二进制文件 */
+- (void)sendMessageWithData:(NSData *)data bodyName:(NSString *)name
+{
+      //调用jsqmessagesViewControll显示
+      JSQPhotoMediaItem *photoItem = [[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageWithData:data]];
+      JSQMessage *photoMessage = [JSQMessage messageWithSenderId:self.senderId
+                                                     displayName:self.senderDisplayName
+                                                           media:photoItem];
+      
+      [messagesList addObject:photoMessage];
+      [self finishSendingMessageAnimated:YES];
+      
+      //发送
+      [[XMPPManager sharedManager] sendMessageWithData:data bodyName:name toUser:self.currentUser.jid];
+     
+}
 
 -(void)didPressAccessoryButton:(UIButton *)sender{
     
-    
+      UIActionSheet *actionSheet =[ [UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"照片",@"拍照",nil];
+      actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+      [actionSheet showInView:self.view];
 }
 
 - (void)didPressSendButton:(UIButton *)button
@@ -156,7 +177,7 @@
                       date:(NSDate *)date
 {
  
-    [JSQSystemSoundPlayer jsq_playMessageSentSound];
+//    [JSQSystemSoundPlayer jsq_playMessageSentSound];
  
     JSQMessage *message = [JSQMessage messageWithSenderId:senderId
                                               displayName:senderDisplayName
@@ -212,17 +233,95 @@
                                     repeats:NO];
 }
 
-
+/**
+ *接收到消息通知的处理函数
+ */
 -(void)reciviedMsg:(NSNotification *)sender{
-    NSDictionary *dic=sender.userInfo;
-    [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
-    JSQMessage *message = [JSQMessage messageWithSenderId:@"user2"
+      NSDictionary *dic=sender.userInfo;
+      [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+      
+      //显示图片
+      if ([[dic objectForKey:@"body"] isEqualToString:@"image"]) {
+            NSData *imageData = [[NSData alloc]initWithBase64EncodedString:[dic objectForKey:@"image"] options:0];
+            JSQPhotoMediaItem *photoItem = [[JSQPhotoMediaItem alloc] initWithImage:[UIImage imageWithData:imageData]];
+            JSQMessage *photoMessage = [JSQMessage messageWithSenderId:self.senderId
+                                                           displayName:self.senderDisplayName
+                                                                 media:photoItem];
+
+            [messagesList addObject:photoMessage];
+            
+      }
+      //显示文字
+      else{
+            JSQMessage *message = [JSQMessage messageWithSenderId:@"user2"
                                               displayName:dic[@"display"]
-                                                     text:dic[@"msg"]];
-    [messagesList addObject:message];
-    
-    [self finishReceivingMessageAnimated:YES];
-    
+                                                     text:dic[@"body"]];
+            [messagesList addObject:message];
+      }
+
+      [self finishReceivingMessageAnimated:YES];
+
+}
+
+/**
+ *接收到网络连接失败消息的处理函数
+ */
+-(void)networkStat:(NSNotification *)sender{
+      self.title = @"网络断开，正在重连....";
+}
+/**
+ *接收到网络登录成功消息的处理函数
+ */
+-(void)didAuthenticate:(NSNotification *)sender{
+      self.title = self.currentUser.jid.user;
+}
+
+
+#pragma  mark-- 实现UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+      NSLog(@"the click button is :%i",(int)buttonIndex);
+      
+      //选择照片
+      if (buttonIndex == 0) {
+            UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+            picker.delegate = self;
+            [self presentViewController:picker animated:YES completion:nil];
+           
+      }
+      
+      //选择拍照
+      else if (buttonIndex == 1) {
+            
+      }
+      
+      ///选择取消
+      else{
+            
+      }
+}
+
+#pragma mark - ******************** imgPickerController代理方法
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+      UIImage *image = info[UIImagePickerControllerOriginalImage];
+
+      NSData *data = UIImageJPEGRepresentation(image, 0.1);
+      [self dismissViewControllerAnimated:YES completion:nil];
+
+      
+//      _concurent_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+//      dispatch_async(_concurent_queue, ^{
+//            [self sendMessageWithData:data bodyName:@"image"];}
+//            );
+      
+      [self sendMessageWithData:data bodyName:@"image"];
+      
+     
+}
+//数据源协议，删除消息
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView didDeleteMessageAtIndexPath:(NSIndexPath *)indexPath
+{
+      [messagesList removeObjectAtIndex:indexPath.item];
 }
 
 - (void)didFinishMessageTimer:(NSTimer*)timer
@@ -241,6 +340,47 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - Responding to collection view tap events
+
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView
+                header:(JSQMessagesLoadEarlierHeaderView *)headerView didTapLoadEarlierMessagesButton:(UIButton *)sender
+{
+      NSLog(@"Load earlier messages!");
+      
+      
+
+}
+
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapAvatarImageView:(UIImageView *)avatarImageView atIndexPath:(NSIndexPath *)indexPath
+{
+      NSLog(@"Tapped avatar!");
+}
+
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapMessageBubbleAtIndexPath:(NSIndexPath *)indexPath
+{
+      NSLog(@"Tapped message bubble!");
+      JSQMessage *message = [messagesList objectAtIndex:indexPath.item];
+      JSQPhotoMediaItem *photoItem = message.media;
+       //跳转到enlargImage
+      if ([message.media isKindOfClass:[JSQPhotoMediaItem class]]) {
+            UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            EnlargeImage *registerViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"EnlargeImage"];
+            UIImage *image = [photoItem image];
+            registerViewController.photo = [photoItem image];
+            [self presentViewController:registerViewController animated:YES completion:^{NSLog(@"go to add enlargImage");}];
+      }
+      
+     
+     
+      
+}
+
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath touchLocation:(CGPoint)touchLocation
+{
+      NSLog(@"Tapped cell at %@!", NSStringFromCGPoint(touchLocation));
+}
+
+
 
 /*
 #pragma mark - Navigation

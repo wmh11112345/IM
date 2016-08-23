@@ -57,27 +57,37 @@ typedef NS_ENUM(NSInteger, ConnectToServerPurpose)
         [self.xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
           [self configure];
     }
+//      self.xmppStream.autoStartTLS = YES;
     return self;
 }
 /*
  *激活xmppRoster
  **/
 -(void)configure{
+      
       XMPPRosterCoreDataStorage *storage=[XMPPRosterCoreDataStorage sharedInstance];
       _xmppRoster=[[XMPPRoster alloc] initWithRosterStorage:storage];
-      //    _xmppRoster.autoAcceptKnownPresenceSubscriptionRequests=NO;
       [_xmppRoster addDelegate:self delegateQueue:dispatch_get_main_queue()];
-      
       [_xmppRoster activate:_xmppStream];
       
-      
+      //激活个人信息模块
       XMPPvCardCoreDataStorage *vStorage=[XMPPvCardCoreDataStorage sharedInstance];
       _vmodule=[[XMPPvCardTempModule alloc] initWithvCardStorage:vStorage];
       [_vmodule activate:_xmppStream];
       
-      
+      //激活头像模块
       _xmppAvate=[[XMPPvCardAvatarModule alloc]initWithvCardTempModule:_vmodule];
       [_xmppAvate activate:_xmppStream];
+      
+      //激活断线重新连接
+      _xmppReconnect = [[XMPPReconnect alloc] init];
+      //设置代理
+      [_xmppReconnect addDelegate:self delegateQueue:dispatch_get_main_queue()];
+      [_xmppReconnect activate:_xmppStream];
+      
+    
+      
+      
 }
 
 
@@ -231,6 +241,35 @@ typedef NS_ENUM(NSInteger, ConnectToServerPurpose)
       [msg addBody:msgBody];
       [_xmppStream sendElement:msg];
 }
+/*
+ *发送图片
+ **/
+- (void)sendMessageWithData:(NSData *)data bodyName:(NSString *)name
+                     toUser:(XMPPJID *)jid{
+      NSString *siID = [XMPPStream generateUUID];
+      XMPPMessage *msg = [XMPPMessage messageWithType:@"chat" to:jid elementID:siID];
+      
+      [msg addBody:name];
+      
+      // 转换成base64的编码
+      NSString *base64str = [data base64EncodedStringWithOptions:0];
+      
+      // 设置节点内容
+      XMPPElement *attachment = [XMPPElement elementWithName:@"attach" stringValue:base64str];
+      
+      // 包含子节点
+      [msg addChild:attachment];
+      
+      //需要回执信息
+      NSXMLElement *receipt = [NSXMLElement elementWithName:@"request" xmlns:@"urn:xmpp:receipts"];
+      [msg addChild:receipt];
+      
+      
+      // 发送消息
+      [_xmppStream sendElement:msg];
+      
+}
+
 
 /*
  *当接收到 message 标签的内容时，XMPPFramework 框架回调该方法
@@ -258,9 +297,16 @@ typedef NS_ENUM(NSInteger, ConnectToServerPurpose)
             }
       }
       NSString *body = [[message elementForName:@"body"] stringValue];
+     
+      NSLog(@"the receive message is %@",message);
       NSString *displayName = [[message from]bare];
-      if (body!=nil) {
-            NSDictionary *info=@{@"userId":message.from.user,@"display":displayName,@"msg":body};
+      if ([body isEqualToString:@"image"]) {
+            NSString *image = [[message elementForName:@"attach"] stringValue];
+            NSDictionary *info=@{@"userId":message.from.user,@"display":displayName,@"image":image ,@"body":body};
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_RECIVED_MSG_5 object:nil userInfo:info];
+      }
+      else if (body!=nil ) {
+            NSDictionary *info=@{@"userId":message.from.user,@"display":displayName,@"body":body};
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_RECIVED_MSG_5 object:nil userInfo:info];
       }
 }
@@ -293,4 +339,22 @@ typedef NS_ENUM(NSInteger, ConnectToServerPurpose)
       [_xmppRoster acceptPresenceSubscriptionRequestFrom:presence.from andAddToRoster:YES];
       
 }
+/*
+ *掉线重连协议
+ */
+-(BOOL)xmppReconnect:(XMPPReconnect *)sender shouldAttemptAutoReconnect:(SCNetworkConnectionFlags)connectionFlags{
+      
+       NSLog(@"开始尝试自动连接:%u", connectionFlags);
+      
+      [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_NETWORK_DISCONNECT object:nil userInfo:nil];
+      return YES;
+      
+}
+
+-(void)xmppReconnect:(XMPPReconnect *)sender didDetectAccidentalDisconnect:(SCNetworkConnectionFlags)connectionFlags{
+      
+       NSLog(@"检测到意外断开连接:%u",connectionFlags);
+      
+}
+
 @end

@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "XMPPManager.h"
+#import "HeadFile.h"
 
 @interface LoginViewController ()<XMPPStreamDelegate>
 
@@ -45,12 +46,14 @@
  */
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
+      //登录成功消息
       NSLog(@"%s__%d__| 登陆成功", __FUNCTION__, __LINE__);
+      [[NSNotificationCenter defaultCenter] postNotificationName:NOTICE_DID_AUTHENTICATE object:nil userInfo:nil];
+      
       XMPPPresence *presence = [XMPPPresence presenceWithType:@"available"];
       [[XMPPManager sharedManager].xmppStream sendElement:presence];
+      
       UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-  
-
       UIViewController *registerViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"FriendListNavigation"];
       [self presentViewController:registerViewController animated:YES completion:^{NSLog(@"go to add friendsList");}];
       
