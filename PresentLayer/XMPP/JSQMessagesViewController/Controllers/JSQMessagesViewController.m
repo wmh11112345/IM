@@ -47,7 +47,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 
 @interface JSQMessagesViewController () <JSQMessagesInputToolbarDelegate,
-                                         JSQMessagesKeyboardControllerDelegate>
+JSQMessagesKeyboardControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet JSQMessagesCollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet JSQMessagesInputToolbar *inputToolbar;
@@ -63,6 +63,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 //保存上一次接收到信息的时间
 @property (strong,nonatomic) NSDate *lastDate;
+
 
 - (void)jsq_configureMessagesViewController;
 
@@ -225,7 +226,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
       [self jsq_configureMessagesViewController];
       [self jsq_registerForNotifications:YES];
+      
       self.lastDate = [NSDate dateWithTimeIntervalSince1970:1];
+      
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -434,13 +437,16 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
 {
       id<JSQMessageData> message = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
-//      NSDate *lastDate =[[NSDate alloc] initWithTimeIntervalSince1970:0];
       NSDate *currentDate = [message date];
-      if ([currentDate timeIntervalSinceDate:self.lastDate] > 60) {
+      NSDate *l_lastDate = [self.lastDate copy];
+      //显示第一条信息的时间和每隔60s显示时间
+      if ([currentDate timeIntervalSinceDate:self.lastDate] > 60 || indexPath.row == 0 ) {
             self.lastDate = [currentDate copy];
+           
              return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:[message date]];
       }
       self.lastDate = [currentDate copy];
+    
      return nil;
 }
 
@@ -647,7 +653,10 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
                    layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-      return kJSQMessagesCollectionViewCellLabelHeightDefault;
+      
+            return kJSQMessagesCollectionViewCellLabelHeightDefault;
+      
+      
 //      return 0.0f;
 }
 

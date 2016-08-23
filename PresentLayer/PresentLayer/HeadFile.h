@@ -13,3 +13,5 @@
 #define NOTICE_REGISTER_SUC_3 @"notice_register_suc_3"
 #define NOTICE_REGISTER_FAIL_4 @"notice_register_fail_4"
 #define NOTICE_RECIVED_MSG_5 @"notice_recived_msg_5"
+#define NOTICE_NETWORK_DISCONNECT @"notice_network_disconnect"
+#define  NOTICE_DID_AUTHENTICATE @"DidAuthenticate"

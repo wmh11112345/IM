@@ -13,12 +13,19 @@
 @class XMPPJID;
 @class XMPPStream;
 
-@interface XMPPManager : NSObject<XMPPStreamDelegate,XMPPRosterDelegate>
+@interface XMPPManager : NSObject<XMPPStreamDelegate,XMPPRosterDelegate>{
+      dispatch_queue_t _concurent_queue;
+}
 
 // 通信通道对象
 @property (nonatomic, strong) XMPPStream *xmppStream;
+
 //好友花名册管理
 @property (nonatomic,strong)  XMPPRoster *xmppRoster;
+
+//断线重连
+@property (nonatomic,strong) XMPPReconnect *xmppReconnect;
+
 + (XMPPManager *)sharedManager;
 
 - (void)loginWithUserName:(NSString *)userName
@@ -33,4 +40,6 @@
 -(XMPPvCardAvatarModule *)vatarModule; 
 - (NSManagedObjectContext *)messageContext;
 -(void)sendMessage:(NSString *)msgBody toUser:(XMPPJID *)jid;
+- (void)sendMessageWithData:(NSData *)data bodyName:(NSString *)name
+                     toUser:(XMPPJID *)jid;
 @end

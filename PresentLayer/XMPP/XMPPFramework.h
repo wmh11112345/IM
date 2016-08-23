@@ -23,7 +23,7 @@
 
 
 #import "XMPP.h"
-
+//#import "XMPPFileTransfer.h"
 // List the modules you're using here.
 #import "XMPPConfig.h"
 
